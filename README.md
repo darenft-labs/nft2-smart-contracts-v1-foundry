@@ -5,8 +5,10 @@ Smart contracts for NFT2.0 Protocol, the universal WEB3 protocol for dynamic NFT
 > - Derivable - ability to derive child (derivative) NFT from parent (underlying) NFT to use or rent out.
 
 ## Prerequisites
-- [Foundry](https://book.getfoundry.sh/)
+- [NodeJS v18.x](https://nodejs.org/en)
+- [Hardhat v2.19.x](https://hardhat.org/)
 - [OpenZeppelin v4.x](https://docs.openzeppelin.com/contracts/4.x/)
+- [Foundry](https://book.getfoundry.sh/)
 
 ## Architecture
 - [Class diagram](./docs/class-diagram.md)
@@ -163,6 +165,9 @@ export BSCSCAN_API_KEY="<API_KEY>"
 ```bash
 $ npx hardhat verify <contract_address> --network <chain-name>
 ```
+
+## (Optional) Verify contract on other chains
+- [Klaytn](./docs/klaytn.md)
 
 ## Upgrade contracts
 - (Optional) Deploy new implementation

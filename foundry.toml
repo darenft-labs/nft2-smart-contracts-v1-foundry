@@ -1,0 +1,13 @@
+[profile.default]
+src = "contracts"
+test = "forge-test"
+out = "out"
+libs = ["lib"]
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+remappings = [
+    '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/',
+    '@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/',
+    '@erc6551=lib/erc6551/src/',
+    '@erc721a=lib/erc721a/contracts/',
+]
