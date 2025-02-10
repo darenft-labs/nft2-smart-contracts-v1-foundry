@@ -35,6 +35,11 @@ interface IFactory {
   event Fee(bytes32 action, uint256 fee);
 
   /**
+   * @dev The factory MUST emit the Collection1155Created event upon successful creation collection1155.
+   */
+  event Collection1155Created(address owner, address collection);
+
+  /**
    * @dev create data registry v1 (deprecated)
    * @param dappUri dapp uri
    */
