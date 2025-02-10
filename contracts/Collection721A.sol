@@ -2,7 +2,7 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
-import "erc721a-upgradeable/contracts/ERC721AUpgradeable.sol";
+import "@erc721a/ERC721AUpgradeable.sol";
 
 import "./abstracts/AbstractCollection.sol";
 

@@ -9,4 +9,5 @@ remappings = [
     '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/',
     '@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/',
     '@erc6551=lib/erc6551/src/',
+    '@erc721a=lib/erc721a/contracts/',
 ]
