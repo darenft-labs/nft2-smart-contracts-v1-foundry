@@ -1,5 +1,6 @@
 [profile.default]
-src = "src"
+src = "contracts"
+test = "forge-test"
 out = "out"
 libs = ["lib"]
 
