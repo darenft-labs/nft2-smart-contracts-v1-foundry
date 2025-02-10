@@ -22,6 +22,7 @@ import "./DataRegistryV2.sol";
 import "./Collection.sol";
 import "./DerivedAccount.sol";
 import "./Collection721A.sol";
+import "./Collection1155V2.sol";
 
 
 contract Factory is IFactory, ERC6551Registry, AccessControlUpgradeable, ReentrancyGuardUpgradeable {
@@ -38,6 +39,8 @@ contract Factory is IFactory, ERC6551Registry, AccessControlUpgradeable, Reentra
 
   address public _addOnsManager;
   address public _feeManager;
+
+  address public _erc1155Implementation;
 
   function initialize(address dataRegistryImpl, 
                         address collectionImpl, 
@@ -65,7 +68,8 @@ contract Factory is IFactory, ERC6551Registry, AccessControlUpgradeable, Reentra
     COLLECTION,
     DERIVED_ACCOUNT,
     ERC712A_COLLECTION,
-    DATA_REGISTRY_V2
+    DATA_REGISTRY_V2,
+    ERC1155_COLLECTION
   }
 
   function updateImplementation(ImplementationKind kind, address implementation) public onlyRole(DEFAULT_ADMIN_ROLE) {
@@ -81,6 +85,8 @@ contract Factory is IFactory, ERC6551Registry, AccessControlUpgradeable, Reentra
       _erc721AImplementation = implementation;
     } else if (kind == ImplementationKind.DATA_REGISTRY_V2) {
       _dataRegistryV2Implementation = implementation;
+    } else if (kind == ImplementationKind.ERC1155_COLLECTION) {
+      _erc1155Implementation = implementation;
     } else {
       revert("Invalid implementation kind");
     }
@@ -234,6 +240,21 @@ contract Factory is IFactory, ERC6551Registry, AccessControlUpgradeable, Reentra
 
   function _derivedAccountOf(address underlyingCollection, uint256 underlyingTokenId) private view returns (address){
     return _derivedRegistries[underlyingCollection][underlyingTokenId];
+  }
+
+  // ====================================================
+  //                   ERC1155 COLLECTION
+  // ====================================================
+  function create1155Collection(string memory _name, string memory _symbol) public nonReentrant returns (address collection) {
+    require(_erc1155Implementation != address(0), "ERC1155 is unsupported");
+
+    bytes32 salt = keccak256(abi.encode(_msgSender(), _name, _symbol));
+    collection = Clones.cloneDeterministic(_erc1155Implementation, salt);
+
+    Collection1155V2(collection).initialize(_msgSender(), _name, _symbol);
+
+    emit Collection1155Created(_msgSender(), collection);
+    return collection;
   }
 
 }
