@@ -3,6 +3,7 @@ src = "contracts"
 test = "forge-test"
 out = "out"
 libs = ["lib"]
+solc = "0.8.20"
 
 # oz upgrades plugins
 ffi = true
