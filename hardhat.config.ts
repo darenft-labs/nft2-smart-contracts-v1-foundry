@@ -9,7 +9,7 @@ import "./tasks";
 import dotenv from "dotenv";
 dotenv.config()
 
-const privateKey1 = process.env.PRIVATE_KEY1!;
+const privateKey = process.env.PRIVATE_KEY!;
 const nodeRealApiKey = process.env.NODEREAL_API_KEY!;
 const bscScanApiKey = process.env.BSCSCAN_API_KEY!;
 
@@ -27,32 +27,32 @@ const config: HardhatUserConfig = {
     avax: {
       url: "https://api.avax.network/ext/bc/C/rpc",
       chainId: 43114,
-      accounts: [privateKey1]
+      accounts: [privateKey]
     },
     avax_fuji: {
       url: "https://api.avax-test.network/ext/bc/C/rpc",
       chainId: 43113,
-      accounts: [privateKey1]
+      accounts: [privateKey]
     },
     bnb_testnet: {
       url: "https://data-seed-prebsc-1-s2.bnbchain.org:8545/",
       chainId: 97,
-      accounts: [privateKey1]
+      accounts: [privateKey]
     },
     bnb: {
       url: "https://bsc-dataseed.bnbchain.org/",
       chainId: 56,
-      accounts: [privateKey1]
+      accounts: [privateKey]
     },
     klaytn_testnet: {
       url: "https://api.baobab.klaytn.net:8651",
       chainId: 1001,      
-      accounts: [privateKey1]
+      accounts: [privateKey]
     },
     klaytn_mainnet: {
       url: `https://open-platform.nodereal.io/${nodeRealApiKey}/klaytn/`,
       chainId: 8217,
-      accounts: [privateKey1]    
+      accounts: [privateKey]    
     },
   },
   etherscan: {    
@@ -72,7 +72,7 @@ const config: HardhatUserConfig = {
         }
       }
     ]  
-  }
+  },
 };
 
 export default config;

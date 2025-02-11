@@ -6,7 +6,8 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/access/IAccessControl.sol";
 import "@openzeppelin/contracts/proxy/Clones.sol";
 import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
-import "@erc6551/ERC6551Registry.sol";
+//import "@erc6551/ERC6551Registry.sol";
+import "erc6551/ERC6551Registry.sol";
 
 import "./interfaces/IFactory.sol";
 import "./interfaces/IDynamic.sol";
