@@ -3,6 +3,7 @@ src = "contracts"
 test = "forge-test"
 out = "out"
 libs = ["lib"]
+solc = "0.8.20"
 
 # oz upgrades plugins
 ffi = true
@@ -14,6 +15,6 @@ extra_output = ["storageLayout"]
 remappings = [
     '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/',
     '@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/',
-    '@erc6551=lib/erc6551/src/',
-    '@erc721a=lib/erc721a/contracts/',    
+    'erc6551/=lib/erc6551/src/',
+    'erc721a-upgradeable/=lib/erc721a/',
 ]
