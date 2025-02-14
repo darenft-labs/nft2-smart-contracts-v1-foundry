@@ -226,10 +226,10 @@ contract Collection1155V2 is AccessControl, Collection1155Base, Initializable {
 
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-    function initialize(address owner, string memory _name, string memory _symbol) external initializer {
+    function initialize(address owner, string memory collection_name, string memory collection_symbol) external initializer {
         _owner = owner;
-        _name = _name;
-        _symbol = _symbol;
+        _name = collection_name;
+        _symbol = collection_symbol;
 
         _setAdminRoles(owner);
     }
