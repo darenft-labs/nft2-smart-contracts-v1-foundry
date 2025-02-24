@@ -16,6 +16,8 @@ import "./interfaces/IFactory.sol";
 import "./interfaces/ISemiTransferable.sol";
 
 contract Collection is AccessControlUpgradeable, AbstractCollection, ERC721Upgradeable, ISemiTransferable {
+  event TokenURIUpdated(uint256 tokenId, string newTokenURI);
+  
   uint8 private constant MAX_BATCH_SIZE = 100;
 
   uint256 public _nextTokenId;
@@ -69,6 +71,7 @@ contract Collection is AccessControlUpgradeable, AbstractCollection, ERC721Upgra
     uint256 tokenId = _nextTokenId++;
     _safeMint(to, tokenId);
     _tokenUris[tokenId] = tokenUri;
+    emit TokenURIUpdated(tokenId, tokenUri);
     return tokenId;
   }
 
@@ -117,6 +120,17 @@ contract Collection is AccessControlUpgradeable, AbstractCollection, ERC721Upgra
   function burn(uint256 tokenId) public {
     require(_msgSender() == ownerOf(tokenId), "Sender MUST be owner of token");
     _burn(tokenId);
+  }
+
+  function updateTokenURI(uint256 tokenId, string calldata newTokenURI) external onlyRole(MINTER_ROLE) {
+    require(_exists(tokenId), "Token does not exist");
+    require(
+      getApproved(tokenId) == _msgSender() || 
+        isApprovedForAll(ownerOf(tokenId), _msgSender()), 
+      "NFT is not approved for caller"
+    );
+    _tokenUris[tokenId] = newTokenURI;
+    emit TokenURIUpdated(tokenId, newTokenURI);
   }
 
   // ====================================================
